@@ -13,10 +13,6 @@ from dotenv import load_dotenv
 import flowsa.flowsa_yaml as flowsa_yaml
 import flowsa.exceptions
 from flowsa.flowsa_log import log
-from flowsa.schema import flow_by_activity_fields, flow_by_sector_fields, \
-    flow_by_sector_collapsed_fields, flow_by_activity_mapped_fields, \
-    flow_by_activity_wsec_fields, flow_by_activity_mapped_wsec_fields, \
-    activity_fields
 from flowsa.settings import datapath, MODULEPATH, \
     sourceconfigpath, flowbysectormethodpath, methodpath
 
@@ -161,66 +157,6 @@ def load_values_from_literature_citations_config():
     with open(sfile, 'r') as f:
         config = yaml.safe_load(f)
     return config
-
-
-def create_fill_na_dict(flow_by_fields):
-    """
-    Dictionary for how to fill nan in different column types
-    :param flow_by_fields: list of columns
-    :return: dictionary for how to fill missing values by dtype
-    """
-    fill_na_dict = {}
-    for k, v in flow_by_fields.items():
-        if v[0]['dtype'] == 'str':
-            fill_na_dict[k] = ""
-        elif v[0]['dtype'] == 'int':
-            fill_na_dict[k] = 0
-        elif v[0]['dtype'] == 'float':
-            fill_na_dict[k] = 0
-    return fill_na_dict
-
-
-def get_flow_by_groupby_cols(flow_by_fields):
-    """
-    Return groupby columns for a type of dataframe
-    :param flow_by_fields: dictionary
-    :return: list, column names
-    """
-    groupby_cols = []
-    for k, v in flow_by_fields.items():
-        if v[0]['dtype'] == 'str':
-            groupby_cols.append(k)
-        elif v[0]['dtype'] == 'int':
-            groupby_cols.append(k)
-    if flow_by_fields == flow_by_activity_fields:
-        # Do not use description for grouping
-        groupby_cols.remove('Description')
-    return groupby_cols
-
-
-fba_activity_fields = [activity_fields['ProducedBy'][0]['flowbyactivity'],
-                       activity_fields['ConsumedBy'][0]['flowbyactivity']]
-fbs_activity_fields = [activity_fields['ProducedBy'][1]['flowbysector'],
-                       activity_fields['ConsumedBy'][1]['flowbysector']]
-fba_fill_na_dict = create_fill_na_dict(flow_by_activity_fields)
-fbs_fill_na_dict = create_fill_na_dict(flow_by_sector_fields)
-fbs_collapsed_fill_na_dict = create_fill_na_dict(
-    flow_by_sector_collapsed_fields)
-fba_default_grouping_fields = get_flow_by_groupby_cols(
-    flow_by_activity_fields)
-fba_mapped_default_grouping_fields = get_flow_by_groupby_cols(
-    flow_by_activity_mapped_fields)
-fba_mapped_wsec_default_grouping_fields = get_flow_by_groupby_cols(
-    flow_by_activity_mapped_wsec_fields)
-fbs_default_grouping_fields = get_flow_by_groupby_cols(
-    flow_by_sector_fields)
-fbs_grouping_fields_w_activities = (
-        fbs_default_grouping_fields + (['ActivityProducedBy',
-                                        'ActivityConsumedBy']))
-fbs_collapsed_default_grouping_fields = get_flow_by_groupby_cols(
-    flow_by_sector_collapsed_fields)
-fba_wsec_default_grouping_fields = get_flow_by_groupby_cols(
-    flow_by_activity_wsec_fields)
 
 
 def clean_str_and_capitalize(s):

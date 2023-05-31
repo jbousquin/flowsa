@@ -12,8 +12,7 @@ in scripts/write_BEA_Use_from_useeior.py
 from functools import reduce
 import pandas as pd
 from flowsa.location import US_FIPS
-from flowsa.common import fbs_activity_fields
-from flowsa.schema import activity_fields
+from flowsa.schema import activity_fields, fbs_activity_fields
 from flowsa.settings import externaldatapath
 from flowsa.flowbyfunctions import assign_fips_location_system, aggregator
 
@@ -167,8 +166,8 @@ def subset_BEA_table(df_load, attr, **_):
         df.loc[:, ActivityCol] = None
         if set(fbs_activity_fields).issubset(df.columns):
             for v in activity_fields.values():
-                if v[0]['flowbyactivity'] == ActivityCol:
-                    SectorCol = v[1]['flowbysector']
+                if v['flowbyactivity'] == ActivityCol:
+                    SectorCol = v['flowbysector']
             df.loc[:, SectorCol] = None
         df2 = pd.concat([df, df2])
 

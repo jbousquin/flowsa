@@ -77,7 +77,7 @@ def add_missing_flow_by_fields(flowby_partial_df, flowbyfields):
     # convert data types to match those defined in flow_by_activity_fields
     for k, v in flowbyfields.items():
         flowby_partial_df.loc[:, k] = \
-            flowby_partial_df[k].astype(v[0]['dtype'])
+            flowby_partial_df[k].astype(v)
     # Resort it so order is correct
     flowby_partial_df = flowby_partial_df[flowbyfields.keys()]
     return flowby_partial_df

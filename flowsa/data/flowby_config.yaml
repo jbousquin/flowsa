@@ -81,6 +81,7 @@ fba_column_order:
   - ConsumedBySectorType
 
 _fbs_base_fields: &fbs_base_fields
+  AttributionSources: object
   Class: object
   Context: object
   DataCollection: float
@@ -152,6 +153,7 @@ fbs_column_order:
   - TechnologicalCorrelation
   - DataCollection
   - MetaSources
+  - AttributionSources
   - FlowUUID
   - ActivityProducedBy
   - ActivityConsumedBy
@@ -163,3 +165,15 @@ activity_fields:
   ConsumedBy:
     flowbyactivity: ActivityConsumedBy
     flowbysector: SectorConsumedBy
+
+dq_fields:
+  - MeasureofSpread
+  - Spread
+  - DistributionType
+  - Min
+  - Max
+  - DataReliability
+  - DataCollection
+  - TemporalCorrelation
+  - GeographicalCorrelation
+  - TechnologicalCorrelation

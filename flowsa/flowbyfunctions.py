@@ -9,19 +9,18 @@ import pandas as pd
 import numpy as np
 from esupy.dqi import get_weighted_average
 import flowsa
-from flowsa.common import \
-    load_crosswalk, fbs_fill_na_dict, check_activities_sector_like, \
-    fbs_collapsed_default_grouping_fields, fbs_collapsed_fill_na_dict, \
-    fba_activity_fields, fba_default_grouping_fields, \
-    load_sector_length_cw_melt, fba_fill_na_dict, \
-    fba_mapped_default_grouping_fields
+from flowsa.common import load_crosswalk, check_activities_sector_like, \
+    load_sector_length_cw_melt
 from flowsa.dataclean import clean_df, replace_strings_with_NoneType, \
     replace_NoneType_with_empty_cells, standardize_units
 from flowsa.flowsa_log import log, vlog
 from flowsa.location import US_FIPS, get_state_FIPS, \
     get_county_FIPS, update_geoscale, fips_number_key
 from flowsa.schema import flow_by_activity_fields, flow_by_sector_fields, \
-    flow_by_sector_collapsed_fields, flow_by_activity_mapped_fields
+    flow_by_sector_collapsed_fields, flow_by_activity_mapped_fields, \
+    fba_fill_na_dict, fbs_collapsed_default_grouping_fields, \
+    fbs_collapsed_fill_na_dict, fba_activity_fields, fbs_fill_na_dict, \
+    fba_default_grouping_fields, fba_mapped_default_grouping_fields
 
 
 def create_geoscale_list(df, geoscale, year='2015'):

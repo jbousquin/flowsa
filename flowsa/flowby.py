@@ -5,8 +5,8 @@ import numpy as np
 from functools import partial, reduce
 from copy import deepcopy
 from flowsa import (common, settings, metadata, sectormapping,
-                    literature_values, flowbyactivity, flowsa_yaml,
-                    validation, geo, naics, exceptions, location)
+                    literature_values, flowbyactivity,
+                    validation, geo, naics, exceptions, location, schema)
 from flowsa.flowsa_log import log, reset_log_file
 import esupy.processed_data_mgmt
 import esupy.dqi
@@ -16,12 +16,7 @@ FB = TypeVar('FB', bound='_FlowBy')
 S = TypeVar('S', bound='_FlowBySeries')
 NAME_SEP_CHAR = '.'
 # ^^^ Used to separate source/activity set names as part of 'full_name' attr
-
-
-with open(settings.datapath + 'flowby_config.yaml') as f:
-    flowby_config = flowsa_yaml.load(f)
-    # ^^^ Replaces schema.py
-
+flowby_config = schema.flowby_config
 
 # TODO: Move this to common.py
 def get_catalog_info(source_name: str) -> dict:

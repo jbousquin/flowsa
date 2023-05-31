@@ -15,10 +15,9 @@ from flowsa.flowbyfunctions import aggregator, create_geoscale_list,\
 from flowsa.flowsa_log import log, vlog
 from flowsa.dataclean import replace_strings_with_NoneType, \
     replace_NoneType_with_empty_cells
-from flowsa.common import sector_level_key, \
-    fba_activity_fields, check_activities_sector_like
+from flowsa.common import sector_level_key, check_activities_sector_like
 from flowsa.location import US_FIPS, fips_number_key
-from flowsa.schema import dq_fields
+from flowsa.schema import dq_fields, fba_activity_fields
 
 
 def check_if_data_exists_at_geoscale(df_load, geoscale):

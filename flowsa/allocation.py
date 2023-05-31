@@ -6,13 +6,14 @@
 Methods of allocating datasets
 """
 import pandas as pd
-from flowsa.common import fbs_activity_fields, sector_level_key, \
+from flowsa.common import sector_level_key, \
     load_crosswalk, check_activities_sector_like
 from flowsa.flowsa_log import log, vlog
 from flowsa.dataclean import replace_NoneType_with_empty_cells, \
     replace_strings_with_NoneType
 from flowsa.flowbyfunctions import sector_aggregation, aggregator, \
     sector_disaggregation, subset_and_merge_df_by_sector_lengths
+from flowsa.schema import fbs_activity_fields
 
 
 def allocate_by_sector(df_w_sectors, attr, allocation_method,

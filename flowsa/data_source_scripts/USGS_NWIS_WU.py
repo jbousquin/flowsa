@@ -10,12 +10,13 @@ import io
 import pandas as pd
 import numpy as np
 from flowsa.location import abbrev_us_state, US_FIPS
-from flowsa.common import fba_activity_fields, capitalize_first_letter
+from flowsa.common import capitalize_first_letter
 from flowsa.flowbyfunctions import assign_fips_location_system, aggregator
 from flowsa.flowsa_log import vlog
 from flowsa.validation import compare_df_units, \
     calculate_flowamount_diff_between_dfs
 from flowsa.flowby import FlowByActivity
+from flowsa.schema import fba_activity_fields
 
 
 def usgs_URL_helper(*, build_url, config, **_):
