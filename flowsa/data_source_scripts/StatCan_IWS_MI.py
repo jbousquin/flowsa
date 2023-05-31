@@ -12,8 +12,8 @@ import pandas as pd
 from flowsa.flowbyfunctions import assign_fips_location_system, aggregator,\
     load_fba_w_standardized_units
 from flowsa.location import US_FIPS, call_country_code
-from flowsa.common import fba_default_grouping_fields, \
-    load_crosswalk, WITHDRAWN_KEYWORD
+from flowsa.common import load_crosswalk, WITHDRAWN_KEYWORD
+from flowsa.schema import fba_default_grouping_fields
 from flowsa.validation import compare_df_units
 
 
